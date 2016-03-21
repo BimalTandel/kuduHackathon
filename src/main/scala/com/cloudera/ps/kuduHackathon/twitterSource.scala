@@ -11,7 +11,7 @@ import scala.collection.mutable.ListBuffer
  */
 
 
-class twitterSource {
+class TwitterSource {
 
   //implicit def javaIteratorToScalaIterator[A](it : java.util.Iterator[A]) = new Wrapper(it)
 
@@ -26,13 +26,15 @@ class twitterSource {
       val tf = new TwitterFactory(cb.build())
       val twitter = tf.getInstance()
 
-      val qry = new Query("source:twitter4j trump")
+      val qry = new Query(q)
 
       // (2) use the twitter object to get your friend's timeline
+      println("the search string is " + qry)
       val result = twitter.search(qry)
       val tweets = result.getTweets
       var tweetPojos = new ListBuffer[TweetPojo]
-
+      val c = tweets.count(x => true)
+      println ("Number of tweets are" + c)
       for (status <- tweets) {
         val rtweetPojo = new TweetPojo(status.getUser.getScreenName, status.getText, status.getRetweetCount, status.getFavoriteCount )
         tweetPojos += rtweetPojo
@@ -42,7 +44,7 @@ class twitterSource {
 
       val returnobj = tweetPojos.toList
       returnobj
-    
+
   }
 }
 

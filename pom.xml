@@ -78,6 +78,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.kududb</groupId>
+            <artifactId>kudu-client</artifactId>
+            <version>0.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloudera.kudu</groupId>
+            <artifactId>kudu-spark</artifactId>
+            <version>14</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
             <version>1.7.6-cdh5.4.7</version>
@@ -106,6 +116,12 @@
             <artifactId>twitter4j-core</artifactId>
             <version>3.0.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-twitter_2.10</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
         <!--
         <dependency>
             <groupId>org.specs2</groupId>
