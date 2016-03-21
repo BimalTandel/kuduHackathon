@@ -1,5 +1,5 @@
 package com.cloudera.ps.kuduHackathon
-
+/*
 import org.apache.spark.{HashPartitioner, SparkContext, SparkConf}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.kududb.client.Operation
@@ -7,13 +7,13 @@ import org.kududb.client.SessionConfiguration.FlushMode
 import org.kududb.spark.KuduContext
 import org.kududb.spark.demo.gamer.GamerEvent
 import org.kududb.spark.demo.gamer.GamerEventBuilder
-
+*/
 
 object TwitterStreamToKudu {
 
   def main(args: Array[String]): Unit = {
 
-    val data = twitterSource // get the twitter data
+/*    val data = twitterSource // get the twitter data
 
     // convert to pojo
 
@@ -132,7 +132,7 @@ object TwitterStreamToKudu {
     ssc.checkpoint("./checkpoint")
     ssc.start()
     ssc.awaitTermination()
-
+*/
   }
 
 }

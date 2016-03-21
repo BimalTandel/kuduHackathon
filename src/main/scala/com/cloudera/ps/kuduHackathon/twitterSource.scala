@@ -1,7 +1,10 @@
 package com.cloudera.ps.kuduHackathon
 
+
 import twitter4j.{Status, Query, TwitterFactory, Twitter}
 import twitter4j.conf.ConfigurationBuilder
+import scala.collection.JavaConversions._
+import scala.collection.mutable.ListBuffer
 
 /**
  * Created by bimal on 3/21/16.
@@ -9,8 +12,10 @@ import twitter4j.conf.ConfigurationBuilder
 
 
 class twitterSource {
+
+  //implicit def javaIteratorToScalaIterator[A](it : java.util.Iterator[A]) = new Wrapper(it)
+
   def getTweets(q:String) : List[TweetPojo] = {
-    try {
       // (1) config work to create a twitter object
       val cb = new ConfigurationBuilder()
       cb.setDebugEnabled(true)
@@ -26,15 +31,18 @@ class twitterSource {
       // (2) use the twitter object to get your friend's timeline
       val result = twitter.search(qry)
       val tweets = result.getTweets
+      var tweetPojos = new ListBuffer[TweetPojo]
 
-      for (status:Status <- tweets) {
+      for (status <- tweets) {
+        val rtweetPojo = new TweetPojo(status.getUser.getScreenName, status.getText, status.getRetweetCount, status.getFavoriteCount )
+        tweetPojos += rtweetPojo
+
         println (status.getUser.getScreenName + status.getFavoriteCount + status.getRetweetCount + status.getText)
       }
 
-    } catch
-    {
-      case e: Exception => println(e)
-    }
+      val returnobj = tweetPojos.toList
+      returnobj
+    
   }
 }
 
